@@ -1,92 +1,94 @@
+
+
 <!DOCTYPE html>
 <html>
     <head>
        <title>geo455_lab3</title>
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-
-        xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-
-        XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                background-color: "whitesmoke";
-                font-family: "Noto Sans", sans-serif;
-                color: #3d3d3d;
-            }
-            #title {
-                position: center;
-                margin-top: 0;
-                top: 10px;
-                left: 50px;
-                font-size: 2em;
-                font-family: "Lora", serif;
-                letter-spacing: .04em;
-                padding: 10px 15px;
-                background-color: rgba(255, 255, 255, 0.5);
-                border: 1px solid grey;
-                border-radius: 3px;
-                z-index: 800;
-            }
-            #description h2 {
-                font-family: "Lora", serif;
-                letter-spacing: .04em;
-            }
-            #map {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 100%;
-            }
-            #description {
-                position:left;
-                bottom: 50px;
-                left: 10px;
-                width: 280px;
-                padding: 0px 15px;
-                background-color: rgba(255, 255, 255, 0.7);
-                border: 1px solid grey;
-                border-radius: 3px;
-                z-index: 800;
-            }
-            #description p {
-                font-size: .9em;
-                line-height: 1.5em;
-            }
-            #description a {
-                color: #005daa;
-                text-decoration: none;
-            }
-            #description a:hover {
-                text-decoration: underline;
-            }
-            footer{ 
-                position: bottom;
-                margin-top: 0;
-                top: 10px;
-                left: 50px;
-                font-size: 2em;
-                font-family: "Lora", serif;
-                letter-spacing: .04em;
-                padding: 10px 15px;
-                background-color: rgba(255, 255, 255, 0.5);
-                border: 1px solid grey;
-                border-radius: 3px;
-                z-index: 800;
-            }
-        </style>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+        <style type="text/css">
+#container {
+	height: relative;
+	width: relative;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+}
+#container #map {
+	background-color: #FFFF66;
+	height: 850px;
+    }
+#container #header {
+    font-size: 2em;
+    font-family: "Lora", serif;
+    letter-spacing: .04em;
+    padding: 10px 15px;
+    background-color: rgba(153, 117, 187, 0.8);
+    border: 1px solid grey;
+    border-radius: 3px;
+    text-align: center;
+    }
+#container #leftMenu {
+	position: static;
+    background-color: #EEEEEE;
+	width: 300px;
+    top: 100px;
+    left: 50px;
+	float: left;
+	height: 830px;
+	margin: 0px;
+    font-size: 1em;
+    font-family: "Lora", serif;
+    letter-spacing: .04em;
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255);
+    border: 1px solid grey;
+    border-radius: 3px;
+    z-index: 800;
+}
+#container #footer {
+    clear: both;
+	font-family: "Lora", serif;
+	font-size: 1em;
+    letter-spacing: .04em;
+	height: 25px;
+	background-color: rgba(153, 117, 187, 0.8);
+    border: 1px solid grey;
+	text-align: center;
+	padding-top: 3px;
+	font-style: italic;
+}
+body {
+	background-color: #25beab;
+}
+</style>
+
     </head>
     <body>
-        <h1 id="title">Lab 3</h1>
-        <div id="map"></div>
-        <div id="description">
-            <h2>About this assignment</h2>
-            <p>This is the final result of the <a href="https://leafletjs.com/examples/quick-start/" target="_blank">Leaflet Quick Start Guide</a>. The map demonstrates Leaflet basics, such as setting up a Leaflet map, adding markers, and popups.</p>
-            <p>The placement and styling of the title and description boxes is done using CSS. Check out the source code of this page to see how.</p>
-           <p>Map authored by XXX</p>
+        <div id="container">
+            <div id="header">Lab 3: Visited Cities of Minnesota</div>
+            <div id="leftMenu">
+                <p>I have lived in Minnesota most of my life and have gotten to see a lot of the state. Here are some locations I have been to in order of how much time I have spent there:</p>
+                    <ol type="1">
+                        <li>Fridley</li>
+                        <li>Sturgeon Lake</li>
+                        <li>Duluth</li>
+                        <li>Mille Lacs</li>
+                        <li>Minneapolis</li>
+                        <li>Winona</li>
+                        <li>Rochester</li>
+                        <li>Red Wing</li>
+                        <li>Baudette</li>
+                    </ol>
+                <p><img style="width: relative; height: 150px;" src="Untitled%20presentation%20(1).jpg" alt="Northern lights at Mille Lacs, MN"></p>
+                <p><i><sup>Photo Credits: Cameron Willcox (2023)</sup></i></p>
+                </div>
+            <div id="map"></div>
+                <script src="map_lab3.js"></script>
+            <div id="footer">Map Developed by: Cameron Willcox</div>
         </div>
-        <script src="map.js"></script>
-    </body>
+     </body>
 </html>
