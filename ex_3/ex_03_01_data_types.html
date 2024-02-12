@@ -18,14 +18,15 @@
     <p id="bool"></p>
 
     <script> //javascript starts here //
-        var x = 7;
-        var y = 4;
+        var x = 37;
+        var y = 20;
         document.getElementById("add").innerHTML = x + x; //"add" id will return the calculation from script to the html document where "add" is used within <p> tag
         document.getElementById("sub").innerHTML = y - y;
         document.getElementById("mult1").innerHTML = x * y;
         document.getElementById("mult2").innerHTML = x * 10;
         document.getElementById("add1").innerHTML = x + 12;
-        
+    
+      
         var z = 11
         z++;
         document.getElementById("incree").innerHTML = z;
@@ -39,13 +40,14 @@
 
         var list = "<ul>";
         list += "<li>Apples</li>";
+        list += "<li>Bread</li>";
         list += "<li>Oranges</li>";
         list += "<li>Milk</li>";
         list += "<li>Eggs</li>"
         list += "</ul>";
         document.getElementById("list").innerHTML = list; // returns all values in the list
 
-        document.getElementById("bool").innerHTML = 6 > 9;
+        document.getElementById("bool").innerHTML = 6 < 9;
     </script>
 
 </body>
