@@ -24,7 +24,10 @@
     <button id="myBtn3">Try it!!</button>
     <p id="demo3"></p>
 
-
+ <h4>See you next time!</h4>
+    <button id="myBtn4">Click here!!</button>
+    <p id="demo4"></p>
+    
 
 <script>
     
@@ -63,6 +66,14 @@
     }
     
     
+    
+    document.getElementById("myBtn4").addEventListener("click", goodbye);
+    
+    function goodbye() {
+        document.getElementById("demo4").innerHTML = 
+            "Goodbye!";
+            }
+
 </script>
 
 </body>
