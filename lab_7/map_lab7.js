@@ -15,7 +15,12 @@ var mymap = L.map("map", {
     layers: streets,
     });
 
-//Mountain Peaks
+
+
+
+
+
+
 
 var myIcon = new L.Icon({
      iconSize: [20, 20],
@@ -67,7 +72,11 @@ var propcircles = new L.geoJson(mtn_peaks, {
   }
 });
 
-//Heatmap
+
+
+
+
+
 var min = 0;
 var max = 0;
 var heatMapPoints = [];
@@ -89,7 +98,11 @@ var heat = L.heatLayer(heatMapPoints, {
     gradient:{0.5: 'blue', 0.75: 'lime', 1: 'red'},
 }).addTo(mymap);
 
-//Cluster map
+
+
+
+
+
 var clustermarkers = L.markerClusterGroup();
 mtn_peaks.features.forEach(function(feature) {
     clustermarkers.addLayer(L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]));
@@ -99,7 +112,11 @@ mymap.addLayer(clustermarkers);
 
 
 
-//Search Box
+
+
+
+
+
 var searchControl = new L.Control.Search({
     position:'topright',
     layer: peaks,
