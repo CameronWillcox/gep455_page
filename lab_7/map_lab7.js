@@ -1,3 +1,5 @@
+
+
 var streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2NoYXVkaHVyaSIsImEiOiJjazBtcG5odG8wMDltM2JtcjdnYTgyanBnIn0.qwqjMomdrBMG36GQKXBlMw', {
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
@@ -7,7 +9,7 @@ var streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{
     zoomOffset: -1
 });
 
-var mymap = L.map('map', {
+var mymap = L.map("map", {
     center: [28.972443641658437, 84.59443216376953],
     zoom: 8,
     layers: streets,
@@ -15,16 +17,20 @@ var mymap = L.map('map', {
 
 
 
-//// Mountain Peaks ///
+
+
+
+
+
+
 
 var myIcon = new L.Icon({
      iconSize: [20, 20],
      iconAnchor: [10, 15],
      popupAnchor:  [1, -24],
-     iconUrl: 'peaks.png'
- });
-
-
+     iconUrl: './images/peaks.png'
+     });
+    
 var peaks = new L.geoJson(mtn_peaks, {
     onEachFeature: function(feature, featureLayer){
         featureLayer.bindPopup('<p>Peak Name: <b>'+feature.properties.TITLE+ '</b></br>' +
@@ -35,10 +41,14 @@ var peaks = new L.geoJson(mtn_peaks, {
             var marker = L.marker(latlng,{icon: myIcon});
             return marker;
         }}).addTo(mymap);
-    
 
-//////proportional circles/////////
-    
+
+
+
+
+
+
+
 function getRadius(area) {
   var radius = Math.sqrt(area/Math.PI);
   return radius * 2;
@@ -47,14 +57,14 @@ function getRadius(area) {
 var propcircles = new L.geoJson(mtn_peaks, {
     onEachFeature: function(feature, featureLayer){
         featureLayer.bindPopup('<p>Peak Name: <b>'+feature.properties.TITLE+ '</b></br>' +
-                               'Number of Expeditions: '+feature.properties.number_of1+'</p>');
+                                   'Number of Expeditions: '+feature.properties.number_of1+'</p>');
     },
     pointToLayer: function(feature, latlng) {
       return L.circleMarker(latlng, {
           fillColor: "#920101", 
           color: '#920101',
           weight: 2,       
-          radius: (feature.properties.number_of1*0.02),
+          radius: getRadius(feature.properties.number_of1),
           fillOpacity: .35
       }).on({
             mouseover: function(e) {
@@ -70,11 +80,11 @@ var propcircles = new L.geoJson(mtn_peaks, {
   }
 });
 
-///// Heatmap /////
+
+
 
 var min = 0;
-var max = 0;    
-
+var max = 0;
 var heatMapPoints = [];
 
 mtn_peaks.features.forEach(function(feature) {
@@ -94,7 +104,10 @@ var heat = L.heatLayer(heatMapPoints, {
     gradient:{0.5: 'blue', 0.75: 'lime', 1: 'red'},
 }).addTo(mymap);
 
-///// Cluster map ////
+
+
+
+
 
 var clustermarkers = L.markerClusterGroup();
 mtn_peaks.features.forEach(function(feature) {
@@ -103,20 +116,9 @@ mtn_peaks.features.forEach(function(feature) {
 
 mymap.addLayer(clustermarkers);
 
-////////scalebar//////   
-L.control.scale({position: 'bottomright', maxWidth: '150', metric: 'True'}).addTo(mymap); 
-    
-        
-//////inset map//////////
-var miniMap = new L.Control.MiniMap(L.tileLayer('https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=tZnptaeI9RvKHsX18rbW'), {
-            toggleDisplay: true,
-            position: 'bottomleft'
-        }).addTo(mymap);
 
 
-////// create a search box /////
-	
-/**/
+
 var searchControl = new L.Control.Search({
     position:'topright',
     layer: peaks,
@@ -125,28 +127,32 @@ var searchControl = new L.Control.Search({
     markeranimate: true,
     delayType: 50,
     collapsed: false,
-    textPlaceholder: 'Search by Peak Name: e.g. Everest, Lhotse',   //placeholder value
+    textPlaceholder: 'Search by Peak Name: e.g. Everest, Lhotse',   
     moveToLocation: function(latlng, title, map) {
         mymap.setView(latlng, 15);}
 });
 
-mymap.addControl(searchControl);  //inizialize search control
-
-
-////////legend////////
-
+mymap.addControl(searchControl); 
 
 var overlayMaps = {
-    "<img src='peaks.png' height=16> Location of Himalayan Peaks": peaks,
-    "<img src='propcircles.png' height=16> Expeditions Proportional Circles": propcircles,
-    "<img src='dead.jpg' height=16> Death Density Heat Map": heat,
-    "<img src='cluster_icon.png' height=16> Clustering of Peaks": clustermarkers,
+    "<img src='./images/peaks.png' height=16> Location of Himalayan Peaks": peaks,
+    "<img src='./images/propcircles.png' height=16> Expeditions Proportional Circles": propcircles,
+    "<img src='./images/dead.jpg' height=16> Death Density Heat Map": heat,
+    "<img src='./images/cluster_icon.png' height=16> Clustering of Peaks": clustermarkers,
 };
 
 var legend = L.control.layers(overlayMaps, {}, {collapsed: false}).addTo(mymap);
 
-///// Full extent zoom button ////
-L.easyButton(('<img src="globe_icon.png", height=85%>'), function(btn, map){
+
+L.easyButton(('<img src="./images/globe_icon.png", height=85%>'), function(btn, map){
     map.setView([28.972443641658437, 84.59443216376953], 8);
 }).addTo(mymap);
+
+
+L.control.scale({position: 'bottomright', maxWidth: '150', metric: 'True'}).addTo(mymap); 
+
+var miniMap = new L.Control.MiniMap(L.tileLayer('https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=tZnptaeI9RvKHsX18rbW'), {
+            toggleDisplay: true,
+            position: 'bottomleft'
+        }).addTo(mymap);
 
