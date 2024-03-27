@@ -135,7 +135,7 @@ var searchControl = new L.Control.Search({
 mymap.addControl(searchControl); 
 
 var overlayMaps = {
-    "<img src='./images/peaks.png' height=16> Location of Himalayan Peaks": peaks,
+    "<img src='peaks.png' height=16> Location of Himalayan Peaks": peaks,
     "<img src='./images/propcircles.png' height=16> Expeditions Proportional Circles": propcircles,
     "<img src='./images/dead.jpg' height=16> Death Density Heat Map": heat,
     "<img src='./images/cluster_icon.png' height=16> Clustering of Peaks": clustermarkers,
