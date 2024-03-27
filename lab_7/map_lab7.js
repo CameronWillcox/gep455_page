@@ -40,7 +40,11 @@ var peaks = new L.geoJson(mtn_peaks, {
             return marker;
         }}).addTo(mymap);
 
-//Proportional Circles
+
+
+
+
+
 function getRadius(area) {
   var radius = Math.sqrt(area/Math.PI);
   return radius * 2;
