@@ -15,20 +15,13 @@ var mymap = L.map("map", {
     layers: streets,
     });
 
-
-
-
-
-
-
-
-
+//Mountain Peaks
 
 var myIcon = new L.Icon({
      iconSize: [20, 20],
      iconAnchor: [10, 15],
      popupAnchor:  [1, -24],
-     iconUrl: 'peaks.png'
+     iconUrl: './images/peaks.png'
      });
     
 var peaks = new L.geoJson(mtn_peaks, {
@@ -42,13 +35,7 @@ var peaks = new L.geoJson(mtn_peaks, {
             return marker;
         }}).addTo(mymap);
 
-
-
-
-
-
-
-
+//Proportional Circles
 function getRadius(area) {
   var radius = Math.sqrt(area/Math.PI);
   return radius * 2;
@@ -80,9 +67,7 @@ var propcircles = new L.geoJson(mtn_peaks, {
   }
 });
 
-
-
-
+//Heatmap
 var min = 0;
 var max = 0;
 var heatMapPoints = [];
@@ -104,11 +89,7 @@ var heat = L.heatLayer(heatMapPoints, {
     gradient:{0.5: 'blue', 0.75: 'lime', 1: 'red'},
 }).addTo(mymap);
 
-
-
-
-
-
+//Cluster map
 var clustermarkers = L.markerClusterGroup();
 mtn_peaks.features.forEach(function(feature) {
     clustermarkers.addLayer(L.marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]));
@@ -118,7 +99,7 @@ mymap.addLayer(clustermarkers);
 
 
 
-
+//Search Box
 var searchControl = new L.Control.Search({
     position:'topright',
     layer: peaks,
@@ -135,10 +116,10 @@ var searchControl = new L.Control.Search({
 mymap.addControl(searchControl); 
 
 var overlayMaps = {
-    "<img src='peaks.png' height=16> Location of Himalayan Peaks": peaks,
-    "<img src='propcircles.png' height=16> Expeditions Proportional Circles": propcircles,
-    "<img src='dead.jpg' height=16> Death Density Heat Map": heat,
-    "<img src='cluster_icon.png' height=16> Clustering of Peaks": clustermarkers,
+    "<img src='./images/peaks.png' height=16> Location of Himalayan Peaks": peaks,
+    "<img src='./images/propcircles.png' height=16> Expeditions Proportional Circles": propcircles,
+    "<img src='./images/dead.jpg' height=16> Death Density Heat Map": heat,
+    "<img src='./images/cluster_icon.png' height=16> Clustering of Peaks": clustermarkers,
 };
 
 var legend = L.control.layers(overlayMaps, {}, {collapsed: false}).addTo(mymap);
