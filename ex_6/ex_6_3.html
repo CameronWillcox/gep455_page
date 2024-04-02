@@ -1,6 +1,6 @@
 <html>
    <head>
-      <title>Ex- 6-3: Effects</title>
+      <title>Ex- 6-2: CSS manipulation</title>
        <style>
            .charac {
                float: left;
@@ -17,12 +17,29 @@
 
       <script>
           
-       $(document).ready(function() {
+       /*$(document).ready(function() {
               $("img").click(function(){
                   $(this).hide();
               });
-          });
-          // add function for show
+          }); */
+          
+         $(document).ready(function() {
+              $("#hide-btn").click(function(){
+                  $("img.very-slow").hide();
+                  $("img.slow").hide("slow");
+                  $("img.slow").hide("slow");
+                  $("img.very-slow").hide(2000);
+              });
+
+              $("#show-btn").click(function(){
+                  $("img.normal").show();
+                  $("img.fast").show();               
+                  $("img.slow").show("slow");
+                  $("img.very-slow").show(2000);
+                  
+              });
+          }); 
+          
 
       </script>
 
@@ -31,12 +48,13 @@
        <h1> Adventures of Tintin </h1>
        <p> Main Characters </p>
        <div class= "charac">
-           <img src="img/tintin-milou.jpg">
-           <img src="img/captain-haddock_v2.jpg">
-           <img src="img/prof_calcu.jpg">
-           <img src="img/Thomson_&_Thompson.png">
+           <img class="normal" src="img/tintin-milou.jpg">
+           <img class="fast" src="img/captain-haddock_v2.jpg">
+           <img class="slow" src="img/prof_calcu.jpg">
+           <img class="very-slow" src="img/Thomson_&_Thompson.png">
        </div>
-       <!-- add show button -->
-
+       
+       <button id='hide-btn'>Hide</button>
+       <button id='show-btn'>Show</button>
    </body>
 </html>
