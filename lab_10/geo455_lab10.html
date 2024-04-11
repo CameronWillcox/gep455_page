@@ -1,10 +1,102 @@
+
 <!DOCTYPE html>
 <html>
-    <head>
-       <title>geo455_lab9</title>
-    </head>
-         <body bgcolor="#EDDD9E">
-       <h1 align="center">Lab 9</h1>
-       
-     </body>
+<head>
+    <title>Draggable marker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+       <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+       
+  
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+      #title {
+                position: fixed;
+                margin-top: 0;
+                top: 10px;
+                left: 50px;
+                font-size: 2em;
+                font-family: "Lora", serif;
+                color: azure;
+                letter-spacing: .04em;
+                padding: 10px 15px;
+                background-color: darkolivegreen;
+                border: 1px solid grey;
+                border-radius: 3px;
+                z-index: 800;
+            }
+    #description {
+                position: fixed;
+                bottom: 20px;
+                left: 10px;
+                width: 280px;
+                padding: 0px 15px;
+                background-color: rgba(255, 255, 255, 0.7);
+                border: 1px solid grey;
+                border-radius: 3px;
+                z-index: 800;
+            }
+    </style>
+</head>
+<body>
+    <body>
+   
+        <div id="map"></div>
+     
+        <h1 id="title">Lab 10: Draggable Great Circle with Midpoint</h1>
+        <div id="map"></div>
+    <div id="description">
+            <h4>About this assignment</h4>
+            <p>This map uses TurfJS to show the great cirle distance and mid-point between two points. The points can be dragged and moved to any location.</p>
+        </div>
+        <script>
+    
+
+var bounds = [5.1219731, 32.6377452, -50.6976368, 70.2490000];
+          
+
+var mymap = L.map("map").fitBounds([[bounds[1], bounds[0]], [bounds[3], bounds[2]]]);
+L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", 
+    {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
+).addTo(mymap);
+
+
+var pnt_layer = L.layerGroup().addTo(mymap);
+var gc_layer = L.layerGroup().addTo(mymap);
+var mp_layer = L.layerGroup().addTo(mymap);
+
+
+
+// Draw points
+L.marker([39.8357687, -83.3384425], {draggable: true}).addEventListener("drag", drawGC).addTo(pnt_layer);
+L.marker([52.9970709, -3.5302215],{draggable: true}).addEventListener("drag", drawGC).addTo(pnt_layer);
+
+// Function to draw Great Circle line
+function drawGC() {
+    gc_layer.clearLayers();
+    mp_layer.clearLayers();
+    points = pnt_layer.toGeoJSON();
+    var gc = turf.greatCircle(points.features[0], points.features[1]);
+    var mp = turf.midpoint(points.features[0], points.features[1]);
+    L.geoJSON(gc).addTo(gc_layer);
+    L.geoJSON(mp).addTo(mp_layer);
+}
+drawGC();
+
+        
+      
+
+    </script>
+</body>
 </html>
