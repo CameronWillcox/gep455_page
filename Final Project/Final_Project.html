@@ -2,15 +2,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Draggable marker</title>
+    <title>Final Project </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-       
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   
-    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <script src="bird_test.js"></script>
+    <script src="eagle.js"></script>
+    <script src="eagle_2.js"></script>
+     <script src="eagle_3.js"></script>
+   <script src="eagle_4.js"></script>
+    <script src="migration.js"></script>
     <style>
         body {
             padding: 0;
@@ -35,47 +41,46 @@
                 border-radius: 3px;
                 z-index: 800;
             }
+      #description {
+                position: fixed;
+                bottom: 40px;
+                right: 10px;
+                width: 380px;
+               height: 580px;
+                padding: 0px 15px;
+                background-color: rgba(135, 231, 168, 0.12);
+                border: 1px solid grey;
+                border-radius: 3px;
+                z-index: 800;
+            }
+   
+        
+        
     </style>
 </head>
 <body>
     <body>
    
         <div id="map"></div>
-       <h1 id="title">Lab 10: Draggable Great Circle with Midpoint</h1>
+       <h1 id="title">Injured Large Wild Birds in Wisconsin</h1>
         <div id="map"></div>
-    <script>
-    
-
-var bounds = [5.1219731, 32.6377452, -50.6976368, 70.2490000];
-          
-
-var mymap = L.map("map").fitBounds([[bounds[1], bounds[0]], [bounds[3], bounds[2]]]);
-L.tileLayer(
-    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", 
-    {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
-).addTo(mymap);
-
-
-var pnt_layer = L.layerGroup().addTo(mymap);
-var gc_layer = L.geoJSON().addTo(mymap);
-
-
-var point1 = L.marker([39.8357687, -83.3384425], {draggable: true}).on("drag", drawGC).addTo(pnt_layer);
-var point2 = L.marker([52.9970709, -3.5302215], {draggable: true}).on("drag", drawGC).addTo(pnt_layer);
-       
-
-
-function drawGC() {
-    gc_layer.clearLayers();
-    points = pnt_layer.toGeoJSON();
-    var gc = turf.greatCircle(points.features[0], points.features[1]);
-    L.geoJSON(gc).addTo(gc_layer);
-}
-drawGC();
+  
+ 
+ 
         
-        //Add midpoint
-  var midpoint = turf.midpoint(point1, point2).addTo(mymap);   
+           <div id="description">
+            <h2>Injured Bald Eagles</h2>
+            <p> Large wild birds are often injured and killed due to human causes. Bald Eagles make up a large pecentage of injured wildlife in Wisconsin. <br/><br/> Wildlife rehabilitation centers present a helpful resource for the assistance of sick, injured, or orphaned wild animals.
+             <h2>Map Information</h2>  
+               <p> This map shows four wildlife rehabilitation centers around the Wisconsisn/ Minnesota area. Each point and line shows an injured bald eagle and what rehabilitation center it was taken too and treated at. </p>
+            <p>Map authored by Cameron Willcox</p>
+        </div>
+        
+     
+        
+        <script src="Final_Project.js"></script>
 
-    </script>
-</body>
-</html>
+  
+
+    </body>
+    </html>
