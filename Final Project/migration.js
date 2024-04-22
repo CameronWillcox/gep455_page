@@ -616,27 +616,7 @@
                 this.migration.start(this.canvas);
             }
         },
-        setData_coal_imp: function (data) {
-            this._data = data;
-            this._draw();
-        },
-        setData_coal_ex: function (data) {
-            this._data = data;
-            this._draw();
-        },
-        setData_nat_imp: function (data) {
-            this._data = data;
-            this._draw();
-        },
-        setData_nat_ex: function (data) {
-            this._data = data;
-            this._draw();
-        },
-        setData_oil_imp: function (data) {
-            this._data = data;
-            this._draw();
-        },
-        setData_oil_ex: function (data) {
+        setData: function (data) {
             this._data = data;
             this._draw();
         },
@@ -654,22 +634,14 @@
         pause: function () {
             this.migration.pause();
         },
-        hide: function () {
-            this.container.style.display = 'none';
-            this._show = false;
-        },
-        show: function () {
-            this.container.style.display = '';
-            this._show = true;
-        },
-        play: function () {
-            this.migration.play();
-        },
-        pause: function () {
-            this.migration.pause();
-        },
-        
-    
+        destroy: function () {
+            this.migration.clear();
+            //移除dom
+            this.container.parentNode.removeChild(this.container);
+            //移除事件监听
+            this._map.clearAllEventListeners();
+            this.mapHandles = [];
+        }
 
     });
     L.migrationLayer = function (options) {
