@@ -121,7 +121,7 @@ var myIcon = new L.Icon({
      iconSize: [20, 20],
      iconAnchor: [10, 15],
      popupAnchor:  [1, -24],
-     iconUrl: './images/Dot.png'
+     iconUrl: 'Dot.png'
      });
     
 var peaks = new L.geoJson(mtn_peaks, {
