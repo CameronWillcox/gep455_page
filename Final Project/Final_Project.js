@@ -175,7 +175,7 @@ var propcircles = new L.geoJson(mtn_peaks, {
 ////Legend/////
 var overlayMaps = {
     
-    "<img src='dot.png' height=16> Location of Injured Bald Eagles": peaks,
+    "<img src='./images/dot.png' height=16> Location of Injured Bald Eagles": peaks,
     "<img src='3.png' height=16> Number of Eagles in Area": propcircles,
  
 };
