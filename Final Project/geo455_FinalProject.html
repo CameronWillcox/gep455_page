@@ -9,6 +9,13 @@
        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   
+     <!--- locator map package --->
+        <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.css' rel='stylesheet' />
+        <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.js'></script>
+        <!--- button package --->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+        <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    
     
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
     <script src="bird_test.js"></script>
@@ -43,18 +50,30 @@
             }
       #description {
                 position: fixed;
-                bottom: 40px;
+                bottom: 20px;
                 right: 10px;
                 width: 380px;
-               height: 580px;
+               height: 480px;
                 padding: 0px 15px;
-                background-color: rgba(135, 231, 168, 0.12);
+                background-color: rgba(107, 179, 161, 0.55);
                 border: 1px solid grey;
                 border-radius: 3px;
                 z-index: 800;
             }
    
-        
+       #description2 {
+                position: fixed;
+                bottom: 500px;
+                right: 10px;
+                width: 380px;
+               height: 320px;
+                padding: 0px 15px;
+                background-color: rgba(107, 179, 161, 0.55);
+                border: 1px solid grey;
+                border-radius: 3px;
+                z-index: 800;
+            }
+   
         
     </style>
 </head>
@@ -62,25 +81,35 @@
     <body>
    
         <div id="map"></div>
-       <h1 id="title">Injured Large Wild Birds in Wisconsin</h1>
+       <h1 id="title">Injured Bald Eagles in Wisconsin</h1>
         <div id="map"></div>
   
- 
- 
+
+
         
            <div id="description">
             <h2>Injured Bald Eagles</h2>
-            <p> Large wild birds are often injured and killed due to human causes. Bald Eagles make up a large pecentage of injured wildlife in Wisconsin. <br/><br/> Wildlife rehabilitation centers present a helpful resource for the assistance of sick, injured, or orphaned wild animals.
-             <h2>Map Information</h2>  
-               <p> This map shows four wildlife rehabilitation centers around the Wisconsisn/ Minnesota area. Each point and line shows an injured bald eagle and what rehabilitation center it was taken too and treated at. </p>
+            <p> Large wild birds are often injured and killed due to human causes. Bald Eagles make up a large pecentage of injured wildlife in Wisconsin. Wildlife rehabilitation centers present a helpful resource for the assistance of sick, injured, or orphaned wild animals. It is important to know that if you find injured wildlife, not all hope is lost. Each year, many injured animals are brought into wildlife rehabilitaton centers and are nurtured back to health. This map show the locations of of injury for numerous injured Bald Eagles. Click around to learn more about what kind of injury each Eagle had and see what rehabilitation center it was brought to receive treatment. 
+             
+              
             <p>Map authored by Cameron Willcox</p>
         </div>
         
-     
+        <div id="description2">
+            <h2>Legend</h2>
+        <ul type="1">
+                         <li><img style="width: relative; height: 15px;" src="Dot.png"> Each point represents an injured Bald Eagle which was taken to a rehabilitation center for treatment</li>
+                         <li><img style="width: relative; height: 15px;" src="flying.svg"> Each bird icon shows a different wildlife rehabilitation center around Wisconsin and Minnesota</li>
+                         <li><img style="width: relative; height: 15px;" src="hand.webp"> Each line shows what center each bird was taken to </li>
+                     <li><img style="width: relative; height: 15px;" src="3.png"> Proportional circles show how many injured eagles were found at each location</li>
+                       
+                    </ul>
+        
+    
         
         <script src="Final_Project.js"></script>
 
   
-
+<body>
     </body>
     </html>
