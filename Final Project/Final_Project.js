@@ -1,13 +1,5 @@
 var mymap = L.map("map").setView([44.6085123, -89.6667297], 8);
 
-var satellite = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2NoYXVkaHVyaSIsImEiOiJjazBtcG5odG8wMDltM2JtcjdnYTgyanBnIn0.qwqjMomdrBMG36GQKXBlMw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' + 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox/satellite-v9',
-    tileSize: 512,
-    zoomOffset: -1
-}).addTo(mymap);
-
 var grayscale = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2NoYXVkaHVyaSIsImEiOiJjazBtcG5odG8wMDltM2JtcjdnYTgyanBnIn0.qwqjMomdrBMG36GQKXBlMw', {
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -16,7 +8,13 @@ var grayscale = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}
     zoomOffset: -1
 }).addTo(mymap);
 
-
+var satellite = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2NoYXVkaHVyaSIsImEiOiJjazBtcG5odG8wMDltM2JtcjdnYTgyanBnIn0.qwqjMomdrBMG36GQKXBlMw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' + 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/satellite-v9',
+    tileSize: 512,
+    zoomOffset: -1
+}).addTo(mymap);
 
 
 
@@ -180,9 +178,8 @@ var propcircles = new L.geoJson(bird_point, {
 
 ////Legend/////
 var baseLayers = {
-   'Grayscale': grayscale,
-   'satellite': satellite,
-   
+    'satellite': satellite,
+    'Grayscale': grayscale,
 	};
 
 var overlayMaps = {
@@ -209,8 +206,5 @@ L.control.scale({position: 'bottomleft', maxWidth: '150', metric: 'True'}).addTo
 L.easyButton(('<img src="globe_icon.png", height=85%>'), function(btn, map){
     map.setView([44.6085123, -89.6667297], 8);
 }).addTo(mymap);
-
-
-
 
 
