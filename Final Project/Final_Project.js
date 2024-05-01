@@ -180,8 +180,9 @@ var propcircles = new L.geoJson(bird_point, {
 
 ////Legend/////
 var baseLayers = {
-    'satellite': satellite,
-    'Grayscale': grayscale,
+   'Grayscale': grayscale,
+   'satellite': satellite,
+   
 	};
 
 var overlayMaps = {
