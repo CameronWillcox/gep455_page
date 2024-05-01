@@ -1,4 +1,4 @@
-var mtn_peaks={
+var bird_point={
 "type": "FeatureCollection",
 "name": "",
 "coordinates": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
