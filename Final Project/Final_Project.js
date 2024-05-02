@@ -185,7 +185,7 @@ var baseLayers = {
 var overlayMaps = {
     
     "<img src='Dot.png' height=16> Location of Injured Bald Eagles": point,
-    "<img src='3.png' height=16> Number of Eagles in Area": propcircles,
+    "<img src='propcircles.png' height=16> Number of Eagles in Area": propcircles,
  
 };
 
