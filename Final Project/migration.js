@@ -1,7 +1,6 @@
 (function (window) {
     var utils = {
-        // color:rgb或rgba格式
-        // opacity: 透明度
+    
         calculateColor: function (color, opacity) {
             if (color.indexOf('#') === 0) {
                 var color16 = color.slice(1);
@@ -61,12 +60,12 @@
             context.lineWidth = this.borderWidth || 0;
             context.strokeStyle = this.borderColor || '#000';
             context.fillStyle = this.color || '#000';
-            // 目前先只支持圆
+          
             context.beginPath();
             if (this.style === 'circle') {
                 context.arc(0, 0, this.size, 0, Math.PI * 2, false);
             } else if (this.style === 'arrow') {
-                // 将箭头后退，让箭头的尖头指向终点
+                
                 context.moveTo(-this.size*2, -this.size);
                 context.lineTo(-this.size*5/4, 0);
                 context.lineTo(-this.size*2, this.size);
@@ -88,10 +87,10 @@
                 startY = options.startY,
                 endX = options.endX,
                 endY = options.endY;
-            //两点之间的圆有多个，通过两点及半径便可以定出两个圆，根据需要选取其中一个圆
+         
             var L = Math.sqrt(Math.pow(startX - endX, 2) + Math.pow(startY - endY, 2));
-            var m = (startX + endX) / 2; // 横轴中点
-            var n = (startY + endY) / 2; // 纵轴中点
+            var m = (startX + endX) / 2; 
+            var n = (startY + endY) / 2; 
             var factor = 1.5;
 
             var centerX = (startY - endY) * factor + m;
@@ -118,7 +117,7 @@
             this.label = options.label;
             this.font = options.font;
             this.shadowBlur = options.shadowBlur;
-            this.endAngle = endAngle - this.lineWidth / radius; // 让线后退，与箭头结合
+            this.endAngle = endAngle - this.lineWidth / radius; 
         };
 
         A.prototype.draw = function (context) {
@@ -200,10 +199,10 @@
                 endX = options.endX,
                 endY = options.endY;
 
-            //两点之间的圆有多个，通过两点及半径便可以定出两个圆，根据需要选取其中一个圆
+          
             var L = Math.sqrt(Math.pow(startX - endX, 2) + Math.pow(startY - endY, 2));
-            var m = (startX + endX) / 2; // 横轴中点
-            var n = (startY + endY) / 2; // 纵轴中点
+            var m = (startX + endX) / 2; 
+            var n = (startY + endY) / 2; 
             var factor = 1.5;
 
             var centerX = (startY - endY) * factor + m;
@@ -213,7 +212,7 @@
             var startAngle = Math.atan2(startY - centerY, startX - centerX);
             var endAngle = Math.atan2(endY - centerY, endX - centerX);
 
-            // 保证Spark的弧度不超过Math.PI
+          
             if (startAngle * endAngle < 0) {
                 if (startAngle < 0) {
                     startAngle += Math.PI * 2;
@@ -223,7 +222,7 @@
                 }
             }
 
-            this.tailPointsCount = 50; // 拖尾点数
+            this.tailPointsCount = 50; 
             this.centerX = centerX;
             this.centerY = centerY;
             this.startAngle = startAngle;
@@ -267,7 +266,7 @@
 
         S.prototype.draw = function (context) {
             var endAngle = this.endAngle;
-            // 匀速
+      
             var angle = this.trailAngle + this.factor;
             var strokeColor = this.strokeStyle;
             if (this.animateBlur) {
@@ -278,7 +277,7 @@
 
             this.drawArc(context, strokeColor, this.lineWidth, this.startAngle, this.arcAngle);
 
-            // 拖尾效果
+        
             var count = this.tailPointsCount;
             for (var i = 0; i < count; i++) {
                 var arcColor = utils.calculateColor(this.strokeStyle, 0.3 - 0.3 / count * i);
@@ -330,7 +329,7 @@
             this.updateData(this.data);
         };
         /*
-         * Shape 必须拥有draw方法
+      
         */
         M.prototype.add = function (Shape) {
 
@@ -345,14 +344,14 @@
                 pulses: [],
                 sparks: []
             };
-            // 更新状态
+         
             this.playAnimation = true;
             this.started = false;
-            // 清除绘画实例，如果没有这个方法，多次调用start，相当于存在多个动画队列同时进行
+           
             window.cancelAnimationFrame(this.requestAnimationId);
         };
         /*
-         * 更新数据
+       
         */
         M.prototype.updateData = function (data) {
             if (!data || data.length === 0) {
@@ -506,7 +505,7 @@
             var bounds = this._map.getBounds();
             var topleft = bounds.getNorthWest();
             var topLeftscreen = this._map.latLngToContainerPoint(topleft);
-            //当地图缩放或者平移到整个地图的范围小于外层容器的范围的时候，要对this.container进行上下平移操作，反之则回归原位
+          
             if (topLeftscreen.y > 0) {
                 this.container.style.top = -topLeftscreen.y + 'px';
             } else {
@@ -636,9 +635,9 @@
         },
         destroy: function () {
             this.migration.clear();
-            //移除dom
+       
             this.container.parentNode.removeChild(this.container);
-            //移除事件监听
+           
             this._map.clearAllEventListeners();
             this.mapHandles = [];
         }
